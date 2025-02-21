@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JSON</h1>
+    <h3>javascript objact notetion</h3>
+    <ul id="users-conteinar">
+
+    </ul>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+          .then(response => response.json())
+          .then(json => dispalayUser(json))
+    
+          function dispalayUser(users){
+            
+            const  usersNames = users.map(user => user.username);
+            console.log(usersNames)
+            const ul = document.getElementById("users-conteinar");
+            for(let i = 0; i < usersNames.length; i++){
+                const user = usersNames[i];
+             const li = document.createElement("li");
+             li.innerText = user;
+             ul.appendChild(li); 
+    
+
+            }
+             
+          }
+    </script>
+    
+</body>
+
+</html>
