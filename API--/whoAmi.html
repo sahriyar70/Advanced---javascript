@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>who am i</title>
+
+</head>
+<body>
+    <h2  id="look" >
+        who am i
+    </h2>
+    <h1></h1>
+        <script>
+        fetch('https://randomuser.me/api')
+        .then(x => x.json())
+        .then(data => {
+            const user = data.results[0]
+            const picture = user.gender;
+            console.log(user)
+
+            // const name = user.name
+            // const userName = `${name.titel}${name.frist} khan`
+            document.getElementById('look').innerText= picture.gender;
+        })
+    </script>
+    
+</body>
+</html>
