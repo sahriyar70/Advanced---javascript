@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userAPI</title>
+</head>
+<body><input type="text" id="user-count" ><button id="lode">lode</button>
+
+    <div id="users">
+
+    </div>
+
+    <div id="user-ditle"></div>
+    <script>
+
+        document.getElementById("lode").addEventListener('click',function(){
+            const countText = document.getElementById("user-count").value;
+
+            const counts = parseInt(countText);
+            // console.log(counts)
+
+            fetch('https://jsonplaceholder.typicode.com/users')
+        .then(x => x.json())
+        .then(data => {
+            data = data.slice(0,counts)
+            const usersConteinar = document.getElementById('users')
+            usersConteinar.innerHTML="";
+
+
+            for (let i = 0; i < data.length; i++) {
+                const user = data[i];
+                const p = document.createElement ('p')
+ 
+ 
+                p.innerHTML = `<p> name;  <strong> ${user.name} name <strong/>  <button onclick="getuserditle(${user.id})"> get info ${user.id} </button></p>`
+                usersConteinar.appendChild(p)
+                //  console.log(user)
+
+            }
+        })
+
+        })
+
+
+        
+
+        function getuserditle(userID){
+
+            fetch(`https://jsonplaceholder.typicode.com/users/${userID}`)
+            .then(x => x.json())
+            .then (data => {
+                // console.log(data)
+                const ditle = document.getElementById('user-ditle');ditle.innerHTML= `
+                <h1>${data.name}</h1>
+                <h2> username:${data.username}  </h2>
+                <h3> Email: ${data.email} </h3>
+                <h4> phone : ${data.phone} </h4>
+
+                
+                
+                `
+            })
+
+
+        }
+    </script>
+    
+</body>
+</html>
